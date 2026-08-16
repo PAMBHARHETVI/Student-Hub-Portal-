@@ -1,0 +1,578 @@
+/* ============================================================
+   style.css — Student Hub Portal
+   CSPIT · CHARUSAT | Semester 3
+   One simple CSS file for everything (base, layout, components)
+   ============================================================ */
+
+/* ---------- Colors (CSS variables) ---------- */
+:root {
+  --primary: #7C4D8E;
+  --secondary: #D8A7C7;
+  --accent: #F4E8F2;
+  --background: #FAF8FB;
+  --white: #FFFFFF;
+  --text: #302733;
+  --text-secondary: #756A78;
+  --border: #E5DDE7;
+  --success: #6FA77A;
+}
+
+/* ---------- Reset and base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--background);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  color: var(--text);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
+h3 { font-size: 17px; }
+
+/* ---------- Small helpers ---------- */
+
+.text-secondary { color: var(--text-secondary); }
+.small { font-size: 13px; }
+
+/* ---------- Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.main-area {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  background-color: var(--white);
+  border-right: 1px solid var(--border);
+  padding: 20px;
+}
+
+.brand-title {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.sidebar-student {
+  background-color: var(--accent);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.student-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 8px;
+}
+
+.student-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.student-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.nav-list a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.nav-list a.active {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.sidebar-foot {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ---------- Top header ---------- */
+.topbar {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.topbar-info {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* ---------- Content area ---------- */
+.content {
+  flex: 1;
+  padding: 24px;
+}
+
+.content > section,
+.content > .card-grid {
+  margin-bottom: 24px;
+}
+
+.page-heading h1 {
+  margin-bottom: 4px;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.card h2 {
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Summary cards ---------- */
+.summary-card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.summary-value {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.summary-note {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.summary-card.success .summary-value {
+  color: var(--success);
+}
+
+/* ---------- Tables ---------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table thead {
+  background-color: var(--accent);
+}
+
+.data-table thead th {
+  color: var(--primary);
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.badge-success {
+  background-color: #E6F2E9;
+  color: var(--success);
+}
+
+.badge-pending {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+/* ---------- Simple lists ---------- */
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.info-list li:last-child {
+  border-bottom: none;
+}
+
+.list-label {
+  color: var(--text-secondary);
+}
+
+.announcement-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.announcement-list li:last-child {
+  border-bottom: none;
+}
+
+.ann-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ---------- Profile ---------- */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.profile-card img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.profile-info h2 {
+  margin-bottom: 2px;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.profile-details div {
+  background-color: var(--accent);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.profile-details dt {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.profile-details dd {
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ---------- Timetable ---------- */
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: center;
+}
+
+.timetable th {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+.timetable .tb-time {
+  background-color: var(--background);
+}
+
+.timetable .tb-break {
+  background-color: var(--accent);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.timetable .tb-lab {
+  background-color: #FBF2F7;
+  color: var(--primary);
+}
+
+/* ---------- Fees ---------- */
+.fee-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Forms ---------- */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--white);
+  width: 100%;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.radio-group input {
+  width: auto;
+}
+
+.btn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+
+/* ---------- Footer ---------- */
+.page-footer {
+  background-color: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 14px 24px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ---------- Simple mobile layout ---------- */
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-student,
+  .sidebar-foot,
+  .topbar-info {
+    display: none;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}
+
+
+/* ---------- Home Page ---------- */
+
+.home-page .topbar {
+  background-color: var(--primary);
+  height: 117px;
+}
+
+.home-page .topbar-title {
+  color: var(--white);
+  font-family: "Times New Roman", serif;
+  font-size: 46px;
+}
+
+.home-page .topbar-info {
+  display: flex;
+  gap: 8px;
+}
+
+.home-page .topbar-info .btn {
+  background-color: var(--white);
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.home-page .content {
+  padding: 0;
+  text-align: center;
+}
+
+.home-page .content h2 {
+  height: 111px;
+  margin: 11px 0 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--accent);
+  color: var(--text);
+
+  font-family: "Times New Roman", serif;
+  font-size: 40px;
+}
+
+.home-page .content img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+
+/* Login Page */
+
+.login-content {
+  min-height: calc(100vh - 60px);
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.login-content img {
+  width: 50%;
+}
+
+.login-box {
+  width: 30%;
+  text-align: center;
+}
+
+.login-box h2 {
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+.login-box .form-group {
+  margin-bottom: 35px;
+}
+
+.login-box label {
+  text-align: left;
+}
+
+.login-box .btn {
+  margin: 0 3px;
+}
+
+.login-page .topbar {
+  background: var(--primary);
+}
+
+.login-page .topbar-title {
+    font-size: 30px;
+}
+
+.login-box h2 {
+  font-size: 40px;
+  margin-bottom: 35px;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Student Hub Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <!-- Sidebar navigation -->
+    <nav class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <h1 class="brand-title">Student Hub</h1>
+        <p class="brand-subtitle">CSPIT · CHARUSAT</p>
+      </div>
+
+      <div class="sidebar-student">
+        <img src="images\its_me.jpeg" alt="Student avatar placeholder" class="student-avatar">
+        <p class="student-name">HETVI PAMBHAR</p>
+        <p class="student-meta">Roll No:25CE065 | Batch C1</p>
+      </div>
+
+      <ul class="nav-list">
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="exams.html">Exams</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="timetable.html">Timetable</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+
+      <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
+    </nav>
+
+    <!-- Main area -->
+    <div class="main-area">
+
+      <header class="topbar">
+        <p class="topbar-title">Dashboard</p>
+        <p class="topbar-info">Semester 3 · Division I<br>2026-27 · Odd Term</p>
+      </header>
+
+      <main class="content">
+
+        <section class="page-heading" aria-labelledby="welcome-title">
+          <h1 id="welcome-title">Welcome, HETVI</h1>
+          <p class="text-secondary">Semester 3 · Division I · Computer Engineering</p>
+        </section>
+
+        <!-- Summary cards -->
+        <section aria-label="Summary cards">
+          <div class="card-grid">
+            <div class="summary-card">
+              <p class="summary-label">Courses Enrolled</p>
+              <p class="summary-value">7</p>
+              <p class="summary-note">Semester 3 courses</p>
+            </div>
+            <div class="summary-card">
+              <p class="summary-label">Attendance</p>
+              <p class="summary-value">99%</p>
+              <p class="summary-note">Overall average</p>
+            </div>
+            <div class="summary-card">
+              <p class="summary-label">Assignments</p>
+              <p class="summary-value">0</p>
+              <p class="summary-note">Pending this week</p>
+            </div>
+            <div class="summary-card success">
+              <p class="summary-label">Fees Remaining</p>
+              <p class="summary-value">₹00.00</p>
+              <p class="summary-note">Paid so far ₹1,55,000</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Today's timetable -->
+        <section aria-labelledby="today-title">
+          <div class="card">
+            <h2 id="today-title">Today's Timetable</h2>
+            <p class="small text-secondary">Sample day: Monday</p>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Subject</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>09:10 - 10:10</td>
+                    <td>WDF (Web Development Frameworks)</td>
+                  </tr>
+                  <tr>
+                    <td>10:10 - 11:10</td>
+                    <td>WDF (Web Development Frameworks)</td>
+                  </tr>
+                  <tr>
+                    <td>01:10 - 02:10</td>
+                    <td>FCN (Fundamentals of Computer Networks)</td>
+                  </tr>
+                  <tr>
+                    <td>02:20 - 04:20</td>
+                    <td>Laboratory Session</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small text-secondary">See the <a href="timetable.html">full weekly timetable</a>.</p>
+          </div>
+        </section>
+
+        <div class="card-grid">
+
+          <!-- Upcoming assignments -->
+          <section aria-labelledby="assign-title">
+            <div class="card">
+              <h2 id="assign-title">Upcoming Assignments</h2>
+              <ul class="info-list">
+                <li>
+                  <span class="list-label">WDF · HTML basics</span>
+                  <span class="badge badge-pending">Due 22 Aug</span>
+                </li>
+                <li>
+                  <span class="list-label">FCN · OSI Model report</span>
+                  <span class="badge badge-pending">Due 28 Aug</span>
+                </li>
+                <li>
+                  <span class="list-label">FDSA · Stack program</span>
+                  <span class="badge badge-pending">Due 01 Sep</span>
+                </li>
+              </ul>
+              <p class="small text-secondary">View all in <a href="assignments.html">Assignments</a>.</p>
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+
+      <footer class="page-footer">
+        <p>Student Hub Portal · Chandubhai S. Patel Institute of Technology (CSPIT) · CHARUSAT</p>
+      </footer>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

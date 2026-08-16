@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | Student Hub Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- Sidebar navigation -->
+    <nav class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <h1 class="brand-title">Student Hub</h1>
+        <p class="brand-subtitle">CSPIT · CHARUSAT</p>
+      </div>
+
+      <div class="sidebar-student">
+        <img src="images/its_me.jpeg" alt="Student avatar placeholder" class="student-avatar">
+        <p class="student-name">HETVI PAMBHAR</p>
+        <p class="student-meta">Roll No:25CE065 | Batch C1</p>
+      </div>
+
+      <ul class="nav-list">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="exams.html">Exams</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="timetable.html">Timetable</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="settings.html" class="active">Settings</a></li>
+      </ul>
+
+      <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
+    </nav>
+
+    <!-- Main area -->
+    <div class="main-area">
+
+      <header class="topbar">
+        <p class="topbar-title">Settings</p>
+        <p class="topbar-info">Semester 3 · Division I<br>2026-27 · Odd Term</p>
+      </header>
+
+      <main class="content">
+
+        <section class="page-heading" aria-labelledby="settings-title">
+          <h1 id="settings-title">Settings</h1>
+          <p class="text-secondary">Update your account preferences</p>
+        </section>
+
+        <!-- Settings form -->
+        <section aria-label="Settings form">
+          <div class="card">
+            <h2>Account Settings</h2>
+
+            <form action="#" method="post">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter Name">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="STUID@charusat.edu.in">
+              </div>
+              <div class="form-group">
+                <label for="password">Change Password</label>
+                <br>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter a new password">
+                <label for="password"> Confirm Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter a confirm password">
+              </div>
+
+              <div class="form-group">
+                <span class="small text-secondary">Notification preference</span>
+                <div class="radio-group">
+                  <label for="pref-email">
+                    <input type="radio" id="pref-email" name="preference" value="email" checked>
+                    Email notifications
+                  </label>
+                  <label for="pref-sms">
+                    <input type="radio" id="pref-sms" name="preference" value="sms">
+                    SMS notifications
+                  </label>
+                  <label for="pref-none">
+                    <input type="radio" id="pref-none" name="preference" value="none">
+                    No notifications
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn">Save Changes</button>
+            </form>
+
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="page-footer">
+        <p>Student Hub Portal · Chandubhai S. Patel Institute of Technology (CSPIT) · CHARUSAT</p>
+      </footer>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

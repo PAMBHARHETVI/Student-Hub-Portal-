@@ -18,7 +18,7 @@
       </div>
 
       <div class="sidebar-student">
-        <img src="images/its_me.jpeg" alt="Student avatar placeholder" class="student-avatar">
+        <img src="images/its_me.jpg" alt="Student avatar placeholder" class="student-avatar">
         <p class="student-name">HETVI PAMBHAR</p>
         <p class="student-meta">Roll No:25CE065 | Batch C1</p>
       </div>
@@ -34,6 +34,7 @@
         <li><a href="timetable.html">Timetable</a></li>
         <li><a href="fees.html">Fees</a></li>
         <li><a href="settings.html" class="active">Settings</a></li>
+        <li><a href="home_page.html">Log Out</a></li>
       </ul>
 
       <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
@@ -43,9 +44,28 @@
     <div class="main-area">
 
       <header class="topbar">
-        <p class="topbar-title">Settings</p>
-        <p class="topbar-info">Semester 3 · Division I<br>2026-27 · Odd Term</p>
-      </header>
+
+    <p class="topbar-title">
+        Settings
+    </p>
+
+    <div class="topbar-right">
+
+        <button
+            id="themeButton"
+            class="theme-button"
+            type="button">
+            🌙
+        </button>
+
+        <p class="topbar-info">
+            Semester 3 · Division I<br>
+            2026-27 · Odd Term
+        </p>
+
+    </div>
+
+</header>
 
       <main class="content">
 
@@ -63,20 +83,50 @@
 
               <div class="form-group">
                 <label for="name">Name</label>
+                <span id="nameError"></span>
                 <input type="text" id="name" name="name" placeholder="Enter Name">
               </div>
 
               <div class="form-group">
                 <label for="email">Email</label>
+                <span id="emailError"></span>
                 <input type="email" id="email" name="email" placeholder="STUID@charusat.edu.in">
               </div>
+              
               <div class="form-group">
-                <label for="password">Change Password</label>
+                <label for="mobileNumber">Mobile Number</label>
+                <span id="mobileError"></span>
+                <input type="text" id="mobileNumber" name="mobileNumber" placeholder="1234567890">
+              </div>
+
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <span id="genderError"></span>
+                <div class="radio-group">
+                  <label for="gen-male">
+                    <input type="radio" id="gen-male" name="gender" value="male">
+                    Male 
+                  </label>
+                  <label for="gen-female">
+                    <input type="radio" id="gen-female" name="gender" value="female">
+                    Female
+                  </label>
+                </div>
+              </div>
+
+              <!-- <div class="form-group">
+                <label for="department">Department</label>
+                <input type="radio" id="department" name="department">
+              </div> -->
+
+              <div class="form-group">
+                <label for="password" >Change Password</label>
                 <br>
+                <span id="passwordError"></span>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter a new password">
-                <label for="password"> Confirm Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter a confirm password">
+                <label for="confirmPassword"> Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter a confirm password">
               </div>
 
               <div class="form-group">
@@ -97,7 +147,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn">Save Changes</button>
+              <button type="submit" id="btn" class="btn">Save Changes</button>
             </form>
 
           </div>
@@ -112,6 +162,7 @@
     </div>
 
   </div>
-
+  <script src="JS/script.js"></script>
+  <script src="JS/form_validation.js"></script>
 </body>
 </html>

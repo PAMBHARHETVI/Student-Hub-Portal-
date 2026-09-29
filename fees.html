@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fee summary and payments for HETVI, Student Hub Portal.">
+  <meta name="description" content="Fee summary and payments for SMIT, Student Hub Portal.">
   <title>Fees | Student Hub Portal</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="sidebar-student">
-        <img src="images/its_me.jpeg" alt="Student avatar placeholder" class="student-avatar">
+        <img src="images/its_me.jpg" alt="Student avatar placeholder" class="student-avatar">
         <p class="student-name">HETVI PAMBHAR</p>
         <p class="student-meta">Roll No:25CE065 | Batch C1</p>
       </div>
@@ -35,6 +35,7 @@
         <li><a href="timetable.html">Timetable</a></li>
         <li><a href="fees.html" class="active">Fees</a></li>
         <li><a href="settings.html">Settings</a></li>
+        <li><a href="home_page.html">Log Out</a></li>
       </ul>
 
       <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
@@ -44,8 +45,27 @@
     <div class="main-area">
 
       <header class="topbar">
-        <p class="topbar-title">Fees</p>
-        <p class="topbar-info">Semester 3 · Division I<br>2026-27 · Odd Term</p>
+
+          <p class="topbar-title">
+              Dashboard
+          </p>
+
+          <div class="topbar-right">
+
+              <button
+                  id="themeButton"
+                  class="theme-button"
+                  type="button">
+                  🌙
+              </button>
+
+              <p class="topbar-info">
+                  Semester 3 · Division I<br>
+                  2026-27 · Odd Term
+              </p>
+
+          </div>
+
       </header>
 
       <main class="content">
@@ -136,6 +156,6 @@
     </div>
 
   </div>
-
+  <script src="JS/script.js"></script>
 </body>
 </html>

@@ -15,6 +15,10 @@
   --text-secondary: #756A78;
   --border: #E5DDE7;
   --success: #6FA77A;
+
+  --input-background: #FFFFFF;
+  --table-header: #F4E8F2;
+  --hover-background: #F7F1F8;
 }
 
 /* ---------- Reset and base ---------- */
@@ -575,4 +579,222 @@ textarea {
 .login-box h2 {
   font-size: 40px;
   margin-bottom: 35px;
+}
+
+#nameError,#emailError,#mobileError,#genderError,#passwordError {
+  color : red;
+}
+
+/* Dark Mode Styles */
+
+
+/* ==========================================
+   GLOBAL DARK MODE
+   ========================================== */
+
+body.dark-mode {
+    --primary: #B985C9;
+    --secondary: #8E6285;
+    --accent: #302735;
+
+    --background: #121015;
+    --white: #1E1A21;
+
+    --text: #F4EEF6;
+    --text-secondary: #BDB3C1;
+
+    --border: #3A3240;
+
+    --success: #82C68F;
+
+    --input-background: #27222B;
+    --table-header: #302735;
+    --hover-background: #2A252E;
+
+    background-color: var(--background);
+    color: var(--text);
+}
+
+
+/* Main page */
+body.dark-mode,
+body.dark-mode main,
+body.dark-mode .main-content {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+
+/* Sidebar */
+body.dark-mode .sidebar {
+    background-color: #1E1A21;
+    color: var(--text);
+}
+
+
+/* Topbar */
+body.dark-mode .topbar {
+    background-color: #1E1A21;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+
+/* Cards */
+body.dark-mode .card,
+body.dark-mode .dashboard-card,
+body.dark-mode .course-card,
+body.dark-mode .profile-card,
+body.dark-mode .stat-card {
+    background-color: var(--white);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+
+/* Text */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label {
+    color: var(--text);
+}
+
+
+/* Secondary text */
+body.dark-mode .text-secondary,
+body.dark-mode small {
+    color: var(--text-secondary);
+}
+
+
+/* Tables */
+body.dark-mode table {
+    background-color: var(--white);
+    color: var(--text);
+}
+
+body.dark-mode .tb-lab{
+    background-color: #2A1F2B;
+    color: var(--primary);
+}
+
+body.dark-mode th {
+    background-color: var(--table-header);
+    color: var(--text);
+}
+
+body.dark-mode td {
+    border-color: var(--border);
+    color: var(--text);
+}
+
+
+/* Forms */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: var(--input-background);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+
+/* Buttons */
+body.dark-mode button {
+    color: var(--text);
+}
+
+
+/* Navigation */
+body.dark-mode a {
+    color: var(--text);
+}
+
+
+/* Hover */
+body.dark-mode .card:hover,
+body.dark-mode .dashboard-card:hover {
+    background-color: var(--hover-background);
+}
+
+
+/* Modal */
+body.dark-mode .modal-content {
+    background-color: var(--white);
+    color: var(--text);
+}
+
+
+/* FAQ */
+body.dark-mode .faq-item {
+    background-color: var(--white);
+    border-color: var(--border);
+}
+
+body.dark-mode .faq-answer {
+    color: var(--text-secondary);
+}
+
+
+/* Footer */
+body.dark-mode footer {
+    background-color: #1E1A21;
+    color: var(--text);
+}
+
+/* ---------- Home page ---------- */
+
+body.dark-mode .home-page {
+  background-color: var(--white);
+  color: var(--text);
+}
+
+body.dark-mode .topbar-info .btn{
+  background-color: var(--primary);
+  color: var(--text);
+}
+
+/* ---------- Login page ---------- */
+
+body.dark-mode .login-box {
+  color: var(--text);
+}
+
+body.dark-mode .login-box h2 {
+  color: var(--text);
+}
+
+body.dark-mode .login-content {
+  background-color: var(--background);
+}
+
+body.dark-mode .login-box input {
+  background-color: var(--input-background);
+  color: var(--text);
+}
+
+/*---------- Signup Page ----------*/
+
+body.dark-mode .signup-container,
+body.dark-mode .signup-box {
+  color: var(--text);
+}
+
+body.dark-mode .signup-box input,
+body.dark-mode .signup-box select,
+body.dark-mode .signup-box textarea {
+  background-color: var(--input-background);
+  color: var(--text);
+  border-color: var(--border);
 }

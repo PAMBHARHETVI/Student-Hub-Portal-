@@ -35,15 +35,73 @@
 
             </header>
 
-        <section class="content">
+        
+            <section class="content">
+                <h2>Welcome to Student Hub</h2>
 
-            <h2>Welcome to Student Hub</h2>
+                <!-- Image Slider -->
+                <div class="home-slider" id="homeSlider">
 
-            <img
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72"
-                alt="Student Hub">
+                    <div class="slider-track">
+                        <img src="images/Home_page.webp"
+                            class="slide-image active"
+                            alt="Welcome to Student Hub">
 
-        </section>
+                        <img src="images/image1.jpg"
+                            class="slide-image"
+                            alt="Student campus">
+
+                        <img src="images/image2.webp"
+                            class="slide-image"
+                            alt="Student learning">
+
+                        <img src="images/image3.jpg"
+                            class="slide-image"
+                            alt="College activities">
+
+                        <img src="images/image4.jpeg"
+                            class="slide-image"
+                            alt="Student community">
+                    </div>
+
+                    <!-- Previous Button -->
+                    <button class="slider-btn prev"
+                            id="prevSlide"
+                            type="button"
+                            aria-label="Previous image">
+                        &#10094;
+                    </button>
+
+                    <!-- Next Button -->
+                    <button class="slider-btn next"
+                            id="nextSlide"
+                            type="button"
+                            aria-label="Next image">
+                        &#10095;
+                    </button>
+
+                    <!-- Navigation Dots -->
+                    <div class="slider-dots" id="sliderDots">
+                        <button class="slider-dot active"
+                                type="button"
+                                aria-label="Show image 1"></button>
+                        <button class="slider-dot"
+                                type="button"
+                                aria-label="Show image 2"></button>
+                        <button class="slider-dot"
+                                type="button"
+                                aria-label="Show image 3"></button>
+                        <button class="slider-dot"
+                                type="button"
+                                aria-label="Show image 4"></button>
+                        <button class="slider-dot"
+                                type="button"
+                                aria-label="Show image 5"></button>
+                    </div>
+
+                </div>
+            </section>
+
 
     </main>
     <script src="JS/script.js"></script>

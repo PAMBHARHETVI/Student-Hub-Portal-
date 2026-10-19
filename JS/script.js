@@ -236,3 +236,46 @@ document.addEventListener("DOMContentLoaded", function () {
     showSlide(0);
     startAutoSlide();
 });
+
+/* =========================
+   COLLAPSIBLE FAQ
+   ========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(function (item) {
+
+        const question = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+
+        question.addEventListener("click", function () {
+
+            const isOpen = question.getAttribute("aria-expanded") === "true";
+
+            // Close all FAQ items first
+            faqItems.forEach(function (otherItem) {
+                const otherQuestion =
+                    otherItem.querySelector(".faq-question");
+                const otherAnswer =
+                    otherItem.querySelector(".faq-answer");
+                const otherIcon =
+                    otherItem.querySelector(".faq-icon");
+
+                otherQuestion.setAttribute("aria-expanded", "false");
+                otherAnswer.hidden = true;
+                otherIcon.textContent = "+";
+            });
+
+            // Open the clicked item if it was previously closed
+            if (!isOpen) {
+                question.setAttribute("aria-expanded", "true");
+                answer.hidden = false;
+                icon.textContent = "−";
+            }
+        });
+    });
+});
+    

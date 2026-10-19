@@ -926,11 +926,12 @@ body.dark-mode .signup-box textarea {
 .home-page .home-slider {
     position: relative;
     width: 100%;
-    max-width: 1400px;
-    height: clamp(280px, 55vw, 600px);
-    margin: 0 auto;
+    max-width: 1000px;
+    height: clamp(280px, 55vw, 450px);
+    margin: 30px auto 0;
     overflow: hidden;
     background-color: var(--accent);
+    border-radius: 15px;
 }
 
 .home-page .slider-track {
@@ -1017,7 +1018,7 @@ body.dark-mode .signup-box textarea {
 }
 
 .home-page .slider-dot.active {
-    background: white;
+    background: var(--background);
     transform: scale(1.2);
 }
 
@@ -1056,5 +1057,98 @@ body.dark-mode .signup-box textarea {
 @media (prefers-reduced-motion: reduce) {
     .home-page .content .home-slider .slide-image {
         transition: none;
+    }
+}
+
+
+/* =========================
+   FAQ SECTION
+   ========================= */
+
+.faq-section {
+    padding: 50px 20px;
+}
+
+.faq-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.faq-container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.faq-subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.faq-item {
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--background);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    border: none;
+    background: var(--accent);
+    color: var(--text-color);
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.faq-question:hover {
+    background: rgba(128, 128, 128, 0.08);
+}
+
+.faq-question:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -3px;
+}
+
+.faq-icon {
+    flex-shrink: 0;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.faq-answer {
+    padding: 0 20px 18px;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+.faq-answer[hidden] {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .faq-section {
+        padding: 35px 15px;
+    }
+
+    .faq-question {
+        padding: 15px;
+    }
+
+    .faq-answer {
+        padding: 0 15px 15px;
     }
 }

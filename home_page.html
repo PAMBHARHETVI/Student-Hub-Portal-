@@ -34,8 +34,38 @@
                 </div>
 
             </header>
-
         
+            
+            <!-- Notification Banner -->
+            <div class="notification-banner" id="notificationBanner"
+                role="status">
+
+                <div class="notification-content">
+                    <span class="notification-icon" aria-hidden="true">📢</span>
+
+                    <div>
+                        <h3>Important Announcement</h3>
+                        <p>
+                            Registration is open! Complete your student profile
+                            before the deadline.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="notification-actions">
+                    <button type="button" id="readNoticeButton">
+                        Read More
+                    </button>
+
+                    <button type="button" id="closeBanner"
+                            aria-label="Dismiss announcement">
+                        &times;
+                    </button>
+                </div>
+
+            </div>
+
+
             <section class="content">
                 <h2>Welcome to Student Hub</h2>
 
@@ -101,7 +131,7 @@
 
                 </div>
             </section>
-
+        
             <!-- FAQ Section -->
             <section class="faq-section" id="faq">
                 <div class="faq-container">
@@ -189,8 +219,42 @@
                 </div>
             </section>
 
-
     </main>
+    
+    <!-- Announcement Modal -->
+    <div class="modal-overlay" id="noticeModal"
+        hidden>
+
+        <div class="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle">
+
+            <button type="button"
+                    class="modal-close"
+                    id="closeModal"
+                    aria-label="Close popup">
+                &times;
+            </button>
+
+            <h2 id="modalTitle">Student Hub Announcement</h2>
+
+            <p>
+                Welcome to Student Hub! Keep your profile updated
+                to stay informed about courses, examinations,
+                events and important college announcements.
+            </p>
+
+            <div class="modal-buttons">
+                <button type="button" id="modalOk">
+                    Got It
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
     <script src="JS/script.js"></script>
 </body>
 </html>

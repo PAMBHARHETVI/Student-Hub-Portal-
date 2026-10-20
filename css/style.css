@@ -735,7 +735,7 @@ body.dark-mode .dashboard-card:hover {
 
 /* Modal */
 body.dark-mode .modal-content {
-    background-color: var(--white);
+    background-color: var(--background);
     color: var(--text);
 }
 
@@ -926,12 +926,11 @@ body.dark-mode .signup-box textarea {
 .home-page .home-slider {
     position: relative;
     width: 100%;
-    max-width: 1000px;
-    height: clamp(280px, 55vw, 450px);
-    margin: 30px auto 0;
+    max-width: 1400px;
+    height: clamp(280px, 55vw, 600px);
+    margin: 0 auto;
     overflow: hidden;
     background-color: var(--accent);
-    border-radius: 15px;
 }
 
 .home-page .slider-track {
@@ -1018,7 +1017,7 @@ body.dark-mode .signup-box textarea {
 }
 
 .home-page .slider-dot.active {
-    background: var(--background);
+    background: white;
     transform: scale(1.2);
 }
 
@@ -1087,10 +1086,10 @@ body.dark-mode .signup-box textarea {
 
 .faq-item {
     margin-bottom: 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color, #d5d5d5);
     border-radius: 10px;
     overflow: hidden;
-    background: var(--background);
+    background: var(--background, #ffffff);
 }
 
 .faq-question {
@@ -1102,8 +1101,8 @@ body.dark-mode .signup-box textarea {
     gap: 15px;
 
     border: none;
-    background: var(--accent);
-    color: var(--text-color);
+    background: transparent;
+    color: var(--text-color, #222222);
     font: inherit;
     font-weight: 600;
     text-align: left;
@@ -1115,7 +1114,7 @@ body.dark-mode .signup-box textarea {
 }
 
 .faq-question:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary, #2563eb);
     outline-offset: -3px;
 }
 
@@ -1128,7 +1127,7 @@ body.dark-mode .signup-box textarea {
 .faq-answer {
     padding: 0 20px 18px;
     line-height: 1.7;
-    color: var(--text-color);
+    color: var(--text-color, #222222);
 }
 
 .faq-answer p {
@@ -1150,5 +1149,177 @@ body.dark-mode .signup-box textarea {
 
     .faq-answer {
         padding: 0 15px 15px;
+    }
+}
+
+
+/* ==========================
+   NOTIFICATION BANNER
+   ========================== */
+
+.notification-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    max-width: 1200px;
+
+    background: var(--accent);
+    color: var(--text);
+    border-left: 5px solid var(--primary);
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.notification-icon {
+    font-size: 28px;
+}
+
+.notification-content h3 {
+    margin-bottom: 4px;
+    color: var(--primary);
+}
+
+.notification-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--primary);
+    color: var(--white);
+}
+
+.notification-actions button:hover {
+    opacity: 0.85;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .notification-banner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px;
+    }
+
+    .notification-actions {
+        align-self: flex-end;
+    }
+}
+
+
+/* ==========================
+   MODAL POPUP
+   ========================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-overlay[hidden],
+.notification-banner[hidden] {
+    display: none;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    padding: 32px;
+
+    background: var(--background);
+    color: var(--text);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+    animation: modalAppear 0.25s ease-out;
+}
+
+.modal-content h2 {
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-right: 20px;
+}
+
+.modal-content p {
+    line-height: 1.8;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.modal-buttons button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal on small screens */
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 26px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal-content {
+        animation: none;
     }
 }

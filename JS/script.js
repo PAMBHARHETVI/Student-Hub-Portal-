@@ -237,6 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
     startAutoSlide();
 });
 
+
 /* =========================
    COLLAPSIBLE FAQ
    ========================= */
@@ -279,3 +280,83 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
     
+
+/* ==========================
+   NOTIFICATION BANNER
+   ========================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const banner = document.getElementById("notificationBanner");
+    const closeButton = document.getElementById("closeBanner");
+    const readButton = document.getElementById("readNoticeButton");
+
+    // Run only on pages containing the banner
+    if (!banner) return;
+
+    // Close the banner
+    closeButton.addEventListener("click", function () {
+        banner.hidden = true;
+    });
+
+    // Open the announcement modal
+    if (readButton) {
+        readButton.addEventListener("click", function () {
+            const modal = document.getElementById("noticeModal");
+
+            if (modal) {
+                modal.hidden = false;
+                document.body.classList.add("modal-open");
+
+                const closeModalButton =
+                    document.getElementById("closeModal");
+
+                if (closeModalButton) {
+                    closeModalButton.focus();
+                }
+            }
+        });
+    }
+
+});
+
+
+/* ==========================
+   MODAL POPUP CONTROLS
+   ========================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal = document.getElementById("noticeModal");
+
+    if (!modal) return;
+
+    const closeButton = document.getElementById("closeModal");
+    const okButton = document.getElementById("modalOk");
+
+    function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+    }
+
+    // Close using X
+    closeButton.addEventListener("click", closeModal);
+
+    // Close using Got It
+    okButton.addEventListener("click", closeModal);
+
+    // Close when clicking the dark overlay
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close using Escape key
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !modal.hidden) {
+            closeModal();
+        }
+    });
+
+});

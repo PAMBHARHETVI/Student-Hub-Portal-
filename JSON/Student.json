@@ -1,0 +1,44 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "rollNo": "25CE065",
+      "name": "Hetvi Pambhar",
+      "department": "Computer Engineering",
+      "semester": 3,
+      "division": "C1",
+      "email": "25ce065@charusat.edu.in",
+      "mobile": "9876543210"
+    },
+    {
+      "id": 2,
+      "rollNo": "25CE066",
+      "name": "Satyam Patel",
+      "department": "Computer Engineering",
+      "semester": 3,
+      "division": "C1",
+      "email": "25ce066@charusat.edu.in",
+      "mobile": "9876543211"
+    },
+    {
+      "id": 3,
+      "rollNo": "25CE067",
+      "name": "Dimpal Shah",
+      "department": "Computer Engineering",
+      "semester": 3,
+      "division": "C1",
+      "email": "25ce067@charusat.edu.in",
+      "mobile": "9876543212"
+    },
+    {
+      "id": 4,
+      "rollNo": "25CE068",
+      "name": "Riya Patel",
+      "department": "Computer Engineering",
+      "semester": 3,
+      "division": "C1",
+      "email": "25ce068@charusat.edu.in",
+      "mobile": "9876543213"
+    }
+  ]
+}

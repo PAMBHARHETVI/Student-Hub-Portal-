@@ -36,22 +36,18 @@
             </header>
         
             
-            <!-- Notification Banner -->
-            <div class="notification-banner" id="notificationBanner"
-                role="status">
+            <div class="notification-banner" id="notificationBanner" role="status">
 
                 <div class="notification-content">
                     <span class="notification-icon" aria-hidden="true">📢</span>
-
+                
                     <div>
                         <h3>Important Announcement</h3>
                         <p>
-                            Registration is open! Complete your student profile
-                            before the deadline.
+                            Announcement description
                         </p>
                     </div>
                 </div>
-
                 <div class="notification-actions">
                     <button type="button" id="readNoticeButton">
                         Read More
@@ -62,7 +58,6 @@
                         &times;
                     </button>
                 </div>
-
             </div>
 
 
@@ -132,6 +127,23 @@
                 </div>
             </section>
         
+            <!-- Upcoming Events Section -->
+            <section class="events-section" id="events">
+                <div class="events-container">
+
+                    <h2>Upcoming Events</h2>
+
+                    <p class="events-subtitle">
+                        Explore technical, sports and cultural activities.
+                    </p>
+
+                    <div class="events-grid" id="eventsContainer">
+                        <p>Loading events...</p>
+                    </div>
+
+                </div>
+            </section>
+            
             <!-- FAQ Section -->
             <section class="faq-section" id="faq">
                 <div class="faq-container">
@@ -141,89 +153,17 @@
                         Find answers to common questions about Student Hub.
                     </p>
 
-                    <div class="faq-item">
-                        <button class="faq-question"
-                                type="button"
-                                aria-expanded="false">
-                            What is Student Hub Portal?
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="faq-answer" hidden>
-                            <p>
-                                Student Hub Portal is a platform that helps students
-                                access student-related information and resources.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question"
-                                type="button"
-                                aria-expanded="false">
-                            How do I create a student account?
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="faq-answer" hidden>
-                            <p>
-                                Open the Sign Up page, fill in the required details,
-                                and submit the registration form.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question"
-                                type="button"
-                                aria-expanded="false">
-                            How can I log in?
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="faq-answer" hidden>
-                            <p>
-                                Open the Login page and enter your registered
-                                credentials to access your account.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question"
-                                type="button"
-                                aria-expanded="false">
-                            Can I update my student profile?
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="faq-answer" hidden>
-                            <p>
-                                If profile editing is enabled in your portal,
-                                open your profile page and update the available fields.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question"
-                                type="button"
-                                aria-expanded="false">
-                            What should I do if I face a technical issue?
-                            <span class="faq-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="faq-answer" hidden>
-                            <p>
-                                Contact your portal administrator or support team
-                                and explain the issue you are experiencing.
-                            </p>
-                        </div>
+                    <div class="faq-list" id="faqList">
+                        <p>Loading frequently asked questions...</p>
                     </div>
 
                 </div>
             </section>
 
     </main>
-    
+
     <!-- Announcement Modal -->
-    <div class="modal-overlay" id="noticeModal"
-        hidden>
+    <div class="modal-overlay" id="noticeModal" hidden>
 
         <div class="modal-content"
             role="dialog"
@@ -239,11 +179,10 @@
 
             <h2 id="modalTitle">Student Hub Announcement</h2>
 
-            <p>
-                Welcome to Student Hub! Keep your profile updated
-                to stay informed about courses, examinations,
-                events and important college announcements.
-            </p>
+            <p id="modalDate"></p>
+            <p id="modalCategory"></p>
+            <p id="modalPriority"></p>
+            <p id="modalDescription"></p>
 
             <div class="modal-buttons">
                 <button type="button" id="modalOk">

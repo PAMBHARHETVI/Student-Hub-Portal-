@@ -1,0 +1,40 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Tech Fest 2026",
+      "date": "2026-10-22",
+      "time": "10:00 AM",
+      "venue": "CSPIT Auditorium",
+      "category": "Technical",
+      "description": "A technical festival featuring coding competitions, workshops and project exhibitions."
+    },
+    {
+      "id": 2,
+      "title": "Hackathon 2026",
+      "date": "2026-10-30",
+      "time": "09:00 AM",
+      "venue": "CSPIT Lab 3",
+      "category": "Technical",
+      "description": "A 24-hour hackathon where students build innovative technology solutions."
+    },
+    {
+      "id": 3,
+      "title": "Sports Day",
+      "date": "2026-10-20",
+      "time": "08:00 AM",
+      "venue": "University Sports Ground",
+      "category": "Sports",
+      "description": "Annual sports event with various indoor and outdoor competitions."
+    },
+    {
+      "id": 4,
+      "title": "Cultural Night",
+      "date": "2026-11-02",
+      "time": "06:00 PM",
+      "venue": "CHARUSAT Campus",
+      "category": "Cultural",
+      "description": "An evening celebrating music, dance, art and cultural performances."
+    }
+  ]
+}

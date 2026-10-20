@@ -1,0 +1,36 @@
+{
+  "notices": [
+    {
+      "id": 1,
+      "title": "Mid Semester Examination Schedule",
+      "date": "2026-09-25",
+      "category": "Examination",
+      "priority": "High",
+      "description": "The Mid Semester Examination schedule for Semester 3 has been published."
+    },
+    {
+      "id": 2,
+      "title": "Assignment Submission Deadline",
+      "date": "2026-09-28",
+      "category": "Academic",
+      "priority": "High",
+      "description": "Students are requested to submit their pending assignments before the deadline."
+    },
+    {
+      "id": 3,
+      "title": "Holiday Notice",
+      "date": "2026-10-02",
+      "category": "General",
+      "priority": "Medium",
+      "description": "The institute will remain closed on the occasion of Gandhi Jayanti."
+    },
+    {
+      "id": 4,
+      "title": "Library Timing Updated",
+      "date": "2026-09-30",
+      "category": "Library",
+      "priority": "Low",
+      "description": "The library will remain open from 8:00 AM to 8:00 PM from Monday to Saturday."
+    }
+  ]
+}

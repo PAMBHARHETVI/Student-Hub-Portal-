@@ -17,9 +17,9 @@
       </div>
 
       <div class="sidebar-student">
-        <img src="images/its_me.jpeg" alt="Student avatar placeholder" class="student-avatar">
-        <p class="student-name">HETVI PAMBHAR</p>
-        <p class="student-meta">Roll No:25CE065 | Batch C1</p>
+        <img src="images/its_me.jpg" alt="Student avatar placeholder" class="student-avatar">
+        <p class="student-name" id="sidebarStudentName">Loading student...</p>
+        <p class="student-meta" id="sidebarStudentMeta"></p>
       </div>
 
       <ul class="nav-list">
@@ -44,9 +44,11 @@
 
       <header class="topbar">
 
-    <p class="topbar-title">
-        Profile
-    </p>
+    <div class="topbar-left">
+          <p class="topbar-title">
+              Profile
+          </p>
+        </div>
 
     <div class="topbar-right">
 
@@ -79,9 +81,9 @@
             <div class="profile-card">
               <img src="images/its_me.jpg" alt="Profile photo placeholder">
               <div class="profile-info">
-                <h2>HETVI PAMBHAR</h2>
-                <p class="text-secondary">Roll Number: 25CE065</p>
-                <p class="small text-secondary">Lab Batch: C1</p>
+                <h2 id="profileStudentName">Loading student...</h2>
+                <p class="text-secondary" id="profileRollNo"></p>
+                <p class="small text-secondary" id="profileBatch"></p>
               </div>
             </div>
           </div>
@@ -94,15 +96,22 @@
             <dl class="profile-details">
               <div>
                 <dt>Name</dt>
-                <dd>HETVI PAMBHAR</dd>
+                <dd id="detailStudentName">Loading...</dd>
               </div>
               <div>
                 <dt>Roll Number</dt>
-                <dd>25CE065</dd>
+                <dd id="detailRollNo">Loading...</dd>
+              </div>
+              <div>
+                <dt>Email ID</dt>
+                <dd id="detailEmail">Loading...</dd>
+              </div><div>
+                <dt>Mobile Number</dt>
+                <dd id="detailNumber">Loading...</dd>
               </div>
               <div>
                 <dt>Department</dt>
-                <dd>Computer Engineering</dd>
+                <dd id="detailDepartment">Loading...</dd>
               </div>
               <div>
                 <dt>Program</dt>
@@ -122,11 +131,11 @@
               </div>
               <div>
                 <dt>Semester</dt>
-                <dd>3 · Odd Term</dd>
+                <dd id="detailSemester">Loading...</dd>
               </div>
               <div>
                 <dt>Division</dt>
-                <dd>1</dd>
+                <dd id="detailDivision">Loading...</dd>
               </div>
               <div>
                 <dt>Laboratory Batch</dt>

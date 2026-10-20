@@ -1,30 +1,3 @@
-console.log("hello");
-
-fetch("JSON/Event.json")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.events);
-});
-
-fetch("JSON/notice.json")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.notices);
-    });
-
-fetch("JSON/faq.json")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.faqs);
-    });
-
-fetch("JSON/Student.json")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.students);
-    });
-
-
 //----------------------------------
 //STUDENT HUB - DYNAMIC UI
 //----------------------------------
@@ -238,125 +211,419 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* =========================
-   COLLAPSIBLE FAQ
-   ========================= */
+
+/* =================================
+   DYNAMIC FAQ FROM JSON/faq.json
+   ================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const faqItems = document.querySelectorAll(".faq-item");
+    const faqList = document.getElementById("faqList");
 
-    faqItems.forEach(function (item) {
+    // Only run on pages that contain the FAQ
+    if (!faqList) return;
 
-        const question = item.querySelector(".faq-question");
-        const answer = item.querySelector(".faq-answer");
-        const icon = item.querySelector(".faq-icon");
+    async function loadFAQs() {
+        try {
+            const response = await fetch("JSON/faq.json");
 
-        question.addEventListener("click", function () {
+            if (!response.ok) {
+                throw new Error("Unable to load FAQ JSON");
+            }
 
-            const isOpen = question.getAttribute("aria-expanded") === "true";
+            const data = await response.json();
+            faqList.replaceChildren();
 
-            // Close all FAQ items first
-            faqItems.forEach(function (otherItem) {
-                const otherQuestion =
-                    otherItem.querySelector(".faq-question");
-                const otherAnswer =
-                    otherItem.querySelector(".faq-answer");
-                const otherIcon =
-                    otherItem.querySelector(".faq-icon");
+            data.faqs.forEach(function (faq) {
 
-                otherQuestion.setAttribute("aria-expanded", "false");
-                otherAnswer.hidden = true;
-                otherIcon.textContent = "+";
+                const item = document.createElement("div");
+                item.className = "faq-item";
+
+                const question = document.createElement("button");
+                question.className = "faq-question";
+                question.type = "button";
+                question.setAttribute("aria-expanded", "false");
+
+                const questionText = document.createElement("span");
+                questionText.textContent = faq.question;
+
+                const icon = document.createElement("span");
+                icon.className = "faq-icon";
+                icon.setAttribute("aria-hidden", "true");
+                icon.textContent = "+";
+
+                question.append(questionText, icon);
+
+                const answer = document.createElement("div");
+                answer.className = "faq-answer";
+                answer.hidden = true;
+
+                const paragraph = document.createElement("p");
+                paragraph.textContent = faq.answer;
+
+                answer.appendChild(paragraph);
+                item.append(question, answer);
+                faqList.appendChild(item);
             });
 
-            // Open the clicked item if it was previously closed
-            if (!isOpen) {
-                question.setAttribute("aria-expanded", "true");
-                answer.hidden = false;
-                icon.textContent = "−";
-            }
-        });
-    });
-});
-    
+        } catch (error) {
+            console.error("FAQ error:", error);
+            faqList.textContent =
+                "FAQs could not be loaded. Please try again.";
+        }
+    }
 
-/* ==========================
-   NOTIFICATION BANNER
-   ========================== */
+    // Event delegation works for dynamically created questions
+    faqList.addEventListener("click", function (event) {
+
+        const question = event.target.closest(".faq-question");
+
+        if (!question || !faqList.contains(question)) return;
+
+        const item = question.closest(".faq-item");
+        const answer = item.querySelector(".faq-answer");
+        const icon = item.querySelector(".faq-icon");
+        const willOpen =
+            question.getAttribute("aria-expanded") !== "true";
+
+        // Close all questions
+        faqList.querySelectorAll(".faq-item").forEach(function (other) {
+            other.querySelector(".faq-question")
+                .setAttribute("aria-expanded", "false");
+
+            other.querySelector(".faq-answer").hidden = true;
+            other.querySelector(".faq-icon").textContent = "+";
+        });
+
+        // Open the selected question
+        if (willOpen) {
+            question.setAttribute("aria-expanded", "true");
+            answer.hidden = false;
+            icon.textContent = "−";
+        }
+    });
+
+    loadFAQs();
+});
+
+
+/* =================================
+   DYNAMIC NOTICES FROM JSON/notice.json
+   ================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const banner = document.getElementById("notificationBanner");
-    const closeButton = document.getElementById("closeBanner");
-    const readButton = document.getElementById("readNoticeButton");
-
-    // Run only on pages containing the banner
-    if (!banner) return;
-
-    // Close the banner
-    closeButton.addEventListener("click", function () {
-        banner.hidden = true;
-    });
-
-    // Open the announcement modal
-    if (readButton) {
-        readButton.addEventListener("click", function () {
-            const modal = document.getElementById("noticeModal");
-
-            if (modal) {
-                modal.hidden = false;
-                document.body.classList.add("modal-open");
-
-                const closeModalButton =
-                    document.getElementById("closeModal");
-
-                if (closeModalButton) {
-                    closeModalButton.focus();
-                }
-            }
-        });
-    }
-
-});
-
-
-/* ==========================
-   MODAL POPUP CONTROLS
-   ========================== */
-
-document.addEventListener("DOMContentLoaded", function () {
-
     const modal = document.getElementById("noticeModal");
 
-    if (!modal) return;
+    // Run only if this page has the notification components
+    if (!banner) return;
 
-    const closeButton = document.getElementById("closeModal");
+    const bannerTitle = banner.querySelector("h3");
+    const bannerDescription = banner.querySelector("p");
+
+    const readButton = document.getElementById("readNoticeButton");
+    const closeBanner = document.getElementById("closeBanner");
+
+    const closeModalButton = document.getElementById("closeModal");
     const okButton = document.getElementById("modalOk");
 
-    function closeModal() {
+    let selectedNotice = null;
+
+    async function loadNotices() {
+        try {
+            const response = await fetch("JSON/notice.json");
+
+            if (!response.ok) {
+                throw new Error("Unable to load notices");
+            }
+
+            const data = await response.json();
+
+            const priorityOrder = {
+                High: 1,
+                Medium: 2,
+                Low: 3
+            };
+
+            // Sort a copy so the original JSON order is unchanged
+            const notices = [...data.notices].sort(function (a, b) {
+                return (priorityOrder[a.priority] ?? 99) -
+                       (priorityOrder[b.priority] ?? 99);
+            });
+
+            // Select the first notice dated today or in the future.
+            // If all notices are past, show the newest past notice.
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const upcoming = notices.filter(function (notice) {
+                const date = new Date(notice.date + "T00:00:00");
+                return date >= today;
+            });
+
+            const candidates = upcoming.length
+                ? upcoming
+                : notices.filter(function (notice) {
+                    return notice.date;
+                }).sort(function (a, b) {
+                    return b.date.localeCompare(a.date);
+                });
+
+            selectedNotice = candidates[0];
+
+            if (!selectedNotice) {
+                banner.hidden = true;
+                return;
+            }
+
+            bannerTitle.textContent = selectedNotice.title;
+            bannerDescription.textContent =
+                selectedNotice.description;
+
+            banner.hidden = false;
+
+        } catch (error) {
+            console.error("Notice loading error:", error);
+            bannerTitle.textContent = "Announcements unavailable";
+            bannerDescription.textContent =
+                "Please try again later.";
+        }
+    }
+
+    function openNoticeModal() {
+        if (!modal || !selectedNotice) return;
+
+        document.getElementById("modalTitle").textContent =
+            selectedNotice.title;
+
+        document.getElementById("modalDate").textContent =
+            "Date: " + selectedNotice.date;
+
+        document.getElementById("modalCategory").textContent =
+            "Category: " + selectedNotice.category;
+
+        document.getElementById("modalPriority").textContent =
+            "Priority: " + selectedNotice.priority;
+
+        document.getElementById("modalDescription").textContent =
+            selectedNotice.description;
+
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+
+        if (closeModalButton) {
+            closeModalButton.focus();
+        }
+    }
+
+    function closeNoticeModal() {
+        if (!modal) return;
+
         modal.hidden = true;
         document.body.classList.remove("modal-open");
     }
 
-    // Close using X
-    closeButton.addEventListener("click", closeModal);
+    if (readButton) {
+        readButton.addEventListener("click", openNoticeModal);
+    }
 
-    // Close using Got It
-    okButton.addEventListener("click", closeModal);
+    if (closeBanner) {
+        closeBanner.addEventListener("click", function () {
+            banner.hidden = true;
+        });
+    }
 
-    // Close when clicking the dark overlay
-    modal.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
+    if (closeModalButton) {
+        closeModalButton.addEventListener("click", closeNoticeModal);
+    }
 
-    // Close using Escape key
+    if (okButton) {
+        okButton.addEventListener("click", closeNoticeModal);
+    }
+
+    if (modal) {
+        modal.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                closeNoticeModal();
+            }
+        });
+    }
+
     document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && !modal.hidden) {
-            closeModal();
+        if (event.key === "Escape" && modal && !modal.hidden) {
+            closeNoticeModal();
         }
     });
 
+    loadNotices();
+});
+
+
+
+/* =================================
+   EVENTS FROM JSON/Event.json
+   ================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const container = document.getElementById("eventsContainer");
+
+    // Run only on pages containing the events section
+    if (!container) return;
+
+    async function loadEvents() {
+        try {
+            const response = await fetch("JSON/Event.json");
+
+            if (!response.ok) {
+                throw new Error("Unable to load events");
+            }
+
+            const data = await response.json();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Show events happening today or in the future
+            const events = data.events
+                .filter(function (event) {
+                    const eventDate =
+                        new Date(event.date + "T00:00:00");
+
+                    return eventDate >= today;
+                })
+                .sort(function (a, b) {
+                    return a.date.localeCompare(b.date);
+                });
+
+            container.replaceChildren();
+
+            if (events.length === 0) {
+                container.textContent = "No upcoming events available.";
+                return;
+            }
+
+            events.forEach(function (event) {
+
+                const card = document.createElement("article");
+                card.className = "event-card";
+
+                const category = document.createElement("span");
+                category.className = "event-category";
+                category.textContent = event.category;
+
+                const title = document.createElement("h3");
+                title.textContent = event.title;
+
+                const date = document.createElement("p");
+                date.textContent = "📅 " + event.date;
+
+                const time = document.createElement("p");
+                time.textContent = "🕒 " + event.time;
+
+                const venue = document.createElement("p");
+                venue.textContent = "📍 " + event.venue;
+
+                const description = document.createElement("p");
+                description.textContent = event.description;
+
+                card.append(
+                    category,
+                    title,
+                    date,
+                    time,
+                    venue,
+                    description
+                );
+
+                container.appendChild(card);
+            });
+
+        } catch (error) {
+            console.error("Event loading error:", error);
+            container.textContent =
+                "Events could not be loaded. Please try again later.";
+        }
+    }
+
+    loadEvents();
+});
+
+
+/* =================================
+   STUDENT PROFILE FROM JSON/Student.json
+   ================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const profileName = document.getElementById("profileStudentName");
+    const sidebarName = document.getElementById("sidebarStudentName");
+
+    // Run only on pages containing student profile elements
+    if (!profileName && !sidebarName) return;
+
+    async function loadStudent() {
+        try {
+            const response = await fetch("JSON/Student.json");
+
+            if (!response.ok) {
+                throw new Error("Unable to load student data");
+            }
+
+            const data = await response.json();
+
+            // Example: show the first student record
+            const student = data.students[0];
+
+            if (!student) {
+                throw new Error("No student record found");
+            }
+
+            function setText(id, value) {
+                const element = document.getElementById(id);
+
+                if (element) {
+                    element.textContent = value ?? "";
+                }
+            }
+
+            // Sidebar
+            setText("sidebarStudentName", student.name);
+            setText(
+                "sidebarStudentMeta",
+                `Roll No: ${student.rollNo} | Batch ${student.division}`
+            );
+
+            // Main profile card
+            setText("profileStudentName", student.name);
+            setText("profileRollNo", `Roll Number: ${student.rollNo}`);
+            setText("profileBatch", `Lab Batch: ${student.division}`);
+
+            // Academic details
+            setText("detailStudentName", student.name);
+            setText("detailRollNo", student.rollNo);
+            setText("detailEmail", student.email);
+            setText("detailNumber", "+91 " + student.mobile);
+            setText("detailDepartment", student.department);
+            setText("detailSemester", student.semester);
+            setText("detailDivision", student.division);
+
+        } catch (error) {
+            console.error("Student loading error:", error);
+
+            setProfileError();
+        }
+    }
+
+    function setProfileError() {
+        ["profileStudentName", "sidebarStudentName"].forEach(function (id) {
+            const element = document.getElementById(id);
+
+            if (element) {
+                element.textContent = "Student information unavailable";
+            }
+        });
+    }
+
+    loadStudent();
 });

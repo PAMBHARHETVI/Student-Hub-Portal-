@@ -1086,10 +1086,10 @@ body.dark-mode .signup-box textarea {
 
 .faq-item {
     margin-bottom: 12px;
-    border: 1px solid var(--border-color, #d5d5d5);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow: hidden;
-    background: var(--background, #ffffff);
+    background: var(--background);
 }
 
 .faq-question {
@@ -1101,8 +1101,8 @@ body.dark-mode .signup-box textarea {
     gap: 15px;
 
     border: none;
-    background: transparent;
-    color: var(--text-color, #222222);
+    background: var(--accent);
+    color: var(--text-color);
     font: inherit;
     font-weight: 600;
     text-align: left;
@@ -1114,7 +1114,7 @@ body.dark-mode .signup-box textarea {
 }
 
 .faq-question:focus-visible {
-    outline: 2px solid var(--primary, #2563eb);
+    outline: 2px solid var(--primary);
     outline-offset: -3px;
 }
 
@@ -1127,7 +1127,7 @@ body.dark-mode .signup-box textarea {
 .faq-answer {
     padding: 0 20px 18px;
     line-height: 1.7;
-    color: var(--text-color, #222222);
+    color: var(--text-color);
 }
 
 .faq-answer p {
@@ -1321,5 +1321,74 @@ body.modal-open {
 @media (prefers-reduced-motion: reduce) {
     .modal-content {
         animation: none;
+    }
+}
+
+
+/* =================================
+   DYNAMIC EVENTS SECTION
+   ================================= */
+
+.events-section {
+    padding: 40px 24px;
+}
+
+.events-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.events-container > h2 {
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.events-subtitle {
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 240px), 1fr)
+    );
+    gap: 20px;
+}
+
+.event-card {
+    padding: 22px;
+    background: var(--accent);
+    color: var(--text);
+    border-radius: 14px;
+    border: 1px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.event-card h3 {
+    margin: 12px 0;
+    color: var(--primary);
+}
+
+.event-card p {
+    margin: 8px 0;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.event-category {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    .events-section {
+        padding: 28px 16px;
     }
 }

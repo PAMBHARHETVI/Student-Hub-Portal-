@@ -1,0 +1,44 @@
+{
+  "faqs": [
+    {
+      "id": 1,
+      "question": "How can I check my attendance?",
+      "answer": "Open the Attendance page from the sidebar to view your subject-wise attendance."
+    },
+    {
+      "id": 2,
+      "question": "Where can I see my examination schedule?",
+      "answer": "You can find your examination schedule on the Exams page."
+    },
+    {
+      "id": 3,
+      "question": "How can I check my results?",
+      "answer": "Open the Results page from the Student Hub sidebar to view your examination results."
+    },
+    {
+      "id": 4,
+      "question": "Where can I find upcoming events?",
+      "answer": "Open the Events page to view upcoming technical, cultural and sports events."
+    },
+    {
+      "id": 5,
+      "question": "How can I change my password?",
+      "answer": "Go to Settings, enter your new password and confirm it before selecting Save Changes."
+    },
+    {
+      "id": 6,
+      "question": "How can I update my profile?",
+      "answer": "Open the Profile page and select the edit option to update your profile information."
+    },
+    {
+      "id": 7,
+      "question": "Where can I see important notices?",
+      "answer": "Important academic and campus announcements are available on the Notices section."
+    },
+    {
+      "id": 8,
+      "question": "Who should I contact for technical problems?",
+      "answer": "You can contact the Student Hub administrator through the Contact page."
+    }
+  ]
+}

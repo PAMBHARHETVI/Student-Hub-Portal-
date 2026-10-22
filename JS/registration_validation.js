@@ -185,6 +185,6 @@ submit.addEventListener("click", function(event)
     }
 
     if (isValid) {
-        window.location.href = "dashboard.html";
+        document.querySelector("form").submit();
     }
 });

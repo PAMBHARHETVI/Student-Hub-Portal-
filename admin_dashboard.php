@@ -11,6 +11,9 @@ requireRole('admin');
 </head>
 <body>
     <h1>Welcome to Admin Dashboard</h1>
+    <p>
+        <a href="student_manage.php">Manage Students</a>
+    </p>
     <p>You are logged in as an administrator.</p>
     <a href="logout.php">Log Out</a>
 </body>

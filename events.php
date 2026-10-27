@@ -1,14 +1,18 @@
+
 <?php
-require_once __DIR__ . "/db.php";
+require_once __DIR__ . '/db.php';
 
-$sql = "SELECT event_id, title, event_date, event_time,
-               venue, category, description
-        FROM events
-        WHERE event_date >= CURDATE()
-        ORDER BY event_date ASC";
+$stmt = $conn->prepare(
+    "SELECT event_id, title, event_date, event_time,
+            venue, category, description, poster_path
+     FROM events
+     WHERE event_date >= CURDATE()
+     ORDER BY event_date ASC"
+);
 
-$stmt = $pdo->query($sql);
-$events = $stmt->fetchAll();
+$stmt->execute();
+$events = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +106,18 @@ $events = $stmt->fetchAll();
                         <?php foreach ($events as $event): ?>
 
                             <article class="event-card">
+                                                                
+                                <?php if (!empty($event['poster_path'])): ?>
+                                    <img
+                                        class="event-poster"
+                                        src="<?= htmlspecialchars(
+                                            'uploads/event-posters/' . basename($event['poster_path']),
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        ) ?>"
+                                        alt="<?= htmlspecialchars($event['title'], ENT_QUOTES, 'UTF-8') ?> poster"
+                                        loading="lazy">
+                                <?php endif; ?>
 
                                 <span class="event-category">
                                     <?= htmlspecialchars($event["category"] ?? "General", ENT_QUOTES, "UTF-8") ?>

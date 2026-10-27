@@ -14,6 +14,11 @@ requireRole('admin');
     <p>
         <a href="student_manage.php">Manage Students</a>
     </p>
+    
+    <p>
+        <a href="admin_events.php">Manage Events</a>
+    </p>
+
     <p>You are logged in as an administrator.</p>
     <a href="logout.php">Log Out</a>
 </body>

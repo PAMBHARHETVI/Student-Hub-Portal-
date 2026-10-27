@@ -1,161 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendance | Student Hub Portal</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php
 
-  <div class="layout">
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    ini_set('session.use_strict_mode', '1');
 
-    <!-- Sidebar navigation -->
-    <nav class="sidebar" aria-label="Main navigation">
-      <div class="sidebar-brand">
-        <h1 class="brand-title">Student Hub</h1>
-        <p class="brand-subtitle">CSPIT · CHARUSAT</p>
-      </div>
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => !empty($_SERVER['HTTPS'])
+            && $_SERVER['HTTPS'] !== 'off',
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
 
-      <div class="sidebar-student">
-        <img src="images/its_me.jpg" alt="Student avatar placeholder" class="student-avatar">
-        <p class="student-name">HETVI PAMBHAR</p>
-        <p class="student-meta">Roll No:25CE065 | Batch C1</p>
-      </div>
+    session_start();
+}
 
-      <ul class="nav-list">
-        <li><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="attendance.html" class="active">Attendance</a></li>
-        <li><a href="assignments.html">Assignments</a></li>
-        <li><a href="exams.html">Exams</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="timetable.html">Timetable</a></li>
-        <li><a href="fees.html">Fees</a></li>
-        <li><a href="events.php">Events</a></li>
-        <li><a href="settings.html">Settings</a></li>
-        <li><a href="logout.php">Log Out</a></li>
-      </ul>
+// Allow 15 minutes of inactivity.
+$timeout = 15 * 60;
 
-      <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
-    </nav>
+// Check whether the user is logged in.
+if (isset($_SESSION['user_id'])) {
 
-    <!-- Main area -->
-    <div class="main-area">
+    $lastActivity = $_SESSION['last_activity'] ?? 0;
 
-      <header class="topbar">
+    if (
+        !is_numeric($lastActivity) ||
+        time() - (int)$lastActivity >= $timeout
+    ) {
+        $_SESSION = [];
 
-          <p class="topbar-title">
-              Attendance
-          </p>
+        if (ini_get('session.use_cookies')) {
+            $params = session_get_cookie_params();
 
-          <div class="topbar-right">
+            setcookie(session_name(), '', [
+                'expires' => time() - 42000,
+                'path' => $params['path'],
+                'secure' => $params['secure'],
+                'httponly' => $params['httponly'],
+                'samesite' => $params['samesite'] ?? 'Lax'
+            ]);
+        }
 
-              <button
-                  id="themeButton"
-                  class="theme-button"
-                  type="button">
-                  🌙
-              </button>
+        session_destroy();
 
-              <p class="topbar-info">
-                  Semester 3 · Division I<br>
-                  2026-27 · Odd Term
-              </p>
+        header('Location: login.html?expired=1');
+        exit;
+    }
 
-          </div>
+    $_SESSION['last_activity'] = time();
+}
 
-      </header>
+// Require authentication before displaying protected pages.
+function requireLogin(): void
+{
+    if (empty($_SESSION['user_id'])) {
+        header('Location: login.html');
+        exit;
+    }
+}
 
-      <main class="content">
+// Require a particular role.
+function requireRole(string $role): void
+{
+    requireLogin();
 
-        <section class="page-heading">
-          <h1 id="attendance-title">Attendance</h1>
-          <p class="text-secondary">Subject-wise attendance summary (sample data)</p>
-        </section>
-
-        <!-- Attendance table -->
-        <section label="Attendance table">
-          <div class="card">
-            <h2>Attendance Summary</h2>
-            <div class="table-wrap">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Course</th>
-                    <th scope="col">Total Classes</th>
-                    <th scope="col">Present</th>
-                    <th scope="col">Absent</th>
-                    <th scope="col">Attendance %</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Fundamentals of Computer Networks (FCN)</td>
-                    <td>24</td>
-                    <td>22</td>
-                    <td>2</td>
-                    <td>91.7%</td>
-                  </tr>
-                  <tr>
-                    <td>Fundamentals of Data Structures and Algorithms (FDSA)</td>
-                    <td>20</td>
-                    <td>18</td>
-                    <td>2</td>
-                    <td>90.0%</td>
-                  </tr>
-                  <tr>
-                    <td>Discrete Mathematics (Maths)</td>
-                    <td>16</td>
-                    <td>14</td>
-                    <td>2</td>
-                    <td>87.5%</td>
-                  </tr>
-                  <tr>
-                    <td>Web Development Frameworks (WDF)</td>
-                    <td>28</td>
-                    <td>25</td>
-                    <td>3</td>
-                    <td>89.3%</td>
-                  </tr>
-                  <tr>
-                    <td>Object Oriented Programming (OOP)</td>
-                    <td>16</td>
-                    <td>13</td>
-                    <td>3</td>
-                    <td>81.3%</td>
-                  </tr>
-                  <tr>
-                    <td>Creativity, Problem Solving and Innovation (HS)</td>
-                    <td>12</td>
-                    <td>11</td>
-                    <td>1</td>
-                    <td>91.7%</td>
-                  </tr>
-                  <tr>
-                    <td>Python with DataScience (UE-1)</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>0</td>
-                    <td>100.0%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="form-note">Overall attendance: 99%</p>
-          </div>
-        </section>
-
-      </main>
-
-      <footer class="page-footer">
-        <p>Student Hub Portal · Chandubhai S. Patel Institute of Technology (CSPIT) · CHARUSAT</p>
-      </footer>
-
-    </div>
-
-  </div>
-  <script src="JS/script.js"></script>
-</body>
-</html>
+    if (($_SESSION['role'] ?? '') !== $role) {
+        http_response_code(403);
+        exit('403 Forbidden: You do not have permission to access this page.');
+    }
+}

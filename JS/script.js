@@ -627,3 +627,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadStudent();
 });
+
+
+
+/* =================================
+   LOAD EVENTS FROM MYSQL DATABASE
+   ================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const eventsContainer = document.getElementById("eventsContainer");
+
+    if (!eventsContainer) return;
+
+    async function loadEvents() {
+        try {
+            const response = await fetch("events_data.php");
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch events");
+            }
+
+            const data = await response.json();
+
+            if (!data.success) {
+                throw new Error(data.message || "Events unavailable");
+            }
+
+            eventsContainer.replaceChildren();
+
+            if (data.events.length === 0) {
+                eventsContainer.textContent = "No upcoming events.";
+                return;
+            }
+
+            data.events.forEach(function (event) {
+                const card = document.createElement("article");
+                card.className = "event-card";
+
+                const title = document.createElement("h3");
+                title.textContent = event.title;
+
+                const category = document.createElement("span");
+                category.className = "event-category";
+                category.textContent = event.category || "General";
+
+                const date = document.createElement("p");
+                date.textContent = "Date: " + event.event_date;
+
+                const time = document.createElement("p");
+                time.textContent = "Time: " + (event.event_time || "Not specified");
+
+                const venue = document.createElement("p");
+                venue.textContent = "Venue: " + (event.venue || "Not specified");
+
+                const description = document.createElement("p");
+                description.textContent = event.description || "";
+
+                const registerButton = document.createElement("a");
+                registerButton.className = "btn";
+                registerButton.textContent = "Register";
+                registerButton.href =
+                    "event_register.php?event_id=" +
+                    encodeURIComponent(event.event_id);
+
+                card.append(
+                    category,
+                    title,
+                    date,
+                    time,
+                    venue,
+                    description,
+                    registerButton
+                );
+
+                eventsContainer.appendChild(card);
+            });
+
+        } catch (error) {
+            console.error("Events loading error:", error);
+            eventsContainer.textContent =
+                "Events could not be loaded. Please try again later.";
+        }
+    }
+
+    loadEvents();
+});

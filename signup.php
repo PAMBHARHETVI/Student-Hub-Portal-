@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/db.php";
+
 $successMessage = "";
 $errors = [];
 
@@ -119,110 +121,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // 9. Save the registration only if validation passes
-    if (empty($errors)) {
+    // 9. Save the student in MySQL if validation passes
+if (
+    $_SERVER["REQUEST_METHOD"] === "POST" &&
+    empty($errors)
+) {
+    try {
+        $sql = "INSERT INTO students (
+                    first_name,
+                    last_name,
+                    email,
+                    mobile,
+                    dob,
+                    department,
+                    institute,
+                    division,
+                    academic_year,
+                    password_hash
+                ) VALUES (
+                    :first_name,
+                    :last_name,
+                    :email,
+                    :mobile,
+                    :dob,
+                    :department,
+                    :institute,
+                    :division,
+                    :academic_year,
+                    :password_hash
+                )";
 
-        $dataDirectory = __DIR__ . "/data";
-        $jsonFile = $dataDirectory . "/registrations.json";
+        $stmt = $pdo->prepare($sql);
 
-        // Create the data directory if it does not exist
-        if (
-            !is_dir($dataDirectory) &&
-            !mkdir($dataDirectory, 0750, true) &&
-            !is_dir($dataDirectory)
-        ) {
-            $errors[] = "Unable to create the registration data directory.";
-        }
+        $stmt->execute([
+            ":first_name" => $firstName,
+            ":last_name" => $lastName,
+            ":email" => $email,
+            ":mobile" => $mobile,
+            ":dob" => $dob,
+            ":department" => $department,
+            ":institute" => $institute,
+            ":division" => $division,
+            ":academic_year" => $academicYear,
+            ":password_hash" => password_hash(
+                $password,
+                PASSWORD_DEFAULT
+            )
+        ]);
 
-        if (empty($errors)) {
-            $file = @fopen($jsonFile, "c+");
+        $successMessage =
+            "Registration submitted successfully!";
 
-            if ($file === false) {
-                $errors[] = "Unable to open the registration data file.";
-            } elseif (!flock($file, LOCK_EX)) {
-                fclose($file);
-                $errors[] = "Unable to lock the registration data file.";
-            } else {
-                rewind($file);
-                $contents = stream_get_contents($file);
-                $data = json_decode($contents, true);
-                
-                if (
-                    json_last_error() !== JSON_ERROR_NONE ||
-                    !is_array($data) ||
-                    !isset($data["registrations"]) ||
-                    !is_array($data["registrations"])
-                ) {
-                    $errors[] = "The registration JSON file is invalid.";
-                } else {
-                    // Hash the password before saving it
-                    $record = [
-                        "id" => bin2hex(random_bytes(8)),
-                        "firstName" => $firstName,
-                        "lastName" => $lastName,
-                        "email" => $email,
-                        "mobile" => $mobile,
-                        "dob" => $dob,
-                        "department" => $department,
-                        "institute" => $institute,
-                        "division" => $division,
-                        "academicYear" => $academicYear,
-                        "passwordHash" => password_hash(
-                            $password,
-                            PASSWORD_DEFAULT
-                        ),
-                        "registeredAt" => date("c")
-                    ];
+    } catch (PDOException $e) {
+        if ($e->getCode() === "23000") {
+            $errors[] =
+                "This email address is already registered.";
+        } else {
+            error_log($e->getMessage());
 
-                    $data["registrations"][] = $record;
-
-                    $json = json_encode(
-                        $data,
-                        JSON_PRETTY_PRINT |
-                        JSON_UNESCAPED_SLASHES
-                    );
-
-                    rewind($file);
-                    $written = false;
-
-                    if ($json !== false && ftruncate($file, 0)) {
-                        $length = strlen($json);
-                        $offset = 0;
-
-                        while ($offset < $length) {
-                            $bytes = fwrite(
-                                $file,
-                                substr($json, $offset)
-                            );
-
-                            if ($bytes === false || $bytes === 0) {
-                                break;
-                            }
-
-                            $offset += $bytes;
-                        }
-
-                        $written = ($offset === $length);
-
-                        if ($written) {
-                            $written = fflush($file);
-                        }
-                    }
-
-                    if ($written) {
-                        $successMessage =
-                            "Registration submitted successfully!";
-                    } else {
-                        $errors[] =
-                            "Unable to save registration. Please try again.";
-                    }
-                }
-
-                flock($file, LOCK_UN);
-                fclose($file);
-            }
+            $errors[] =
+                "Unable to save registration. Please try again.";
         }
     }
+}
 }
 ?>
 

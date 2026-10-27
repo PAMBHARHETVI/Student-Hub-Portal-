@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance | Student Hub Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- Sidebar navigation -->
+    <nav class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <h1 class="brand-title">Student Hub</h1>
+        <p class="brand-subtitle">CSPIT · CHARUSAT</p>
+      </div>
+
+      <div class="sidebar-student">
+        <img src="images/its_me.jpg" alt="Student avatar placeholder" class="student-avatar">
+        <p class="student-name">HETVI PAMBHAR</p>
+        <p class="student-meta">Roll No:25CE065 | Batch C1</p>
+      </div>
+
+      <ul class="nav-list">
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="attendance.html" class="active">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="exams.html">Exams</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="timetable.html">Timetable</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="events.php">Events</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+      </ul>
+
+      <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
+    </nav>
+
+    <!-- Main area -->
+    <div class="main-area">
+
+      <header class="topbar">
+
+          <p class="topbar-title">
+              Attendance
+          </p>
+
+          <div class="topbar-right">
+
+              <button
+                  id="themeButton"
+                  class="theme-button"
+                  type="button">
+                  🌙
+              </button>
+
+              <p class="topbar-info">
+                  Semester 3 · Division I<br>
+                  2026-27 · Odd Term
+              </p>
+
+          </div>
+
+      </header>
+
+      <main class="content">
+
+        <section class="page-heading">
+          <h1 id="attendance-title">Attendance</h1>
+          <p class="text-secondary">Subject-wise attendance summary (sample data)</p>
+        </section>
+
+        <!-- Attendance table -->
+        <section label="Attendance table">
+          <div class="card">
+            <h2>Attendance Summary</h2>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Total Classes</th>
+                    <th scope="col">Present</th>
+                    <th scope="col">Absent</th>
+                    <th scope="col">Attendance %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fundamentals of Computer Networks (FCN)</td>
+                    <td>24</td>
+                    <td>22</td>
+                    <td>2</td>
+                    <td>91.7%</td>
+                  </tr>
+                  <tr>
+                    <td>Fundamentals of Data Structures and Algorithms (FDSA)</td>
+                    <td>20</td>
+                    <td>18</td>
+                    <td>2</td>
+                    <td>90.0%</td>
+                  </tr>
+                  <tr>
+                    <td>Discrete Mathematics (Maths)</td>
+                    <td>16</td>
+                    <td>14</td>
+                    <td>2</td>
+                    <td>87.5%</td>
+                  </tr>
+                  <tr>
+                    <td>Web Development Frameworks (WDF)</td>
+                    <td>28</td>
+                    <td>25</td>
+                    <td>3</td>
+                    <td>89.3%</td>
+                  </tr>
+                  <tr>
+                    <td>Object Oriented Programming (OOP)</td>
+                    <td>16</td>
+                    <td>13</td>
+                    <td>3</td>
+                    <td>81.3%</td>
+                  </tr>
+                  <tr>
+                    <td>Creativity, Problem Solving and Innovation (HS)</td>
+                    <td>12</td>
+                    <td>11</td>
+                    <td>1</td>
+                    <td>91.7%</td>
+                  </tr>
+                  <tr>
+                    <td>Python with DataScience (UE-1)</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>0</td>
+                    <td>100.0%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="form-note">Overall attendance: 99%</p>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="page-footer">
+        <p>Student Hub Portal · Chandubhai S. Patel Institute of Technology (CSPIT) · CHARUSAT</p>
+      </footer>
+
+    </div>
+
+  </div>
+  <script src="JS/script.js"></script>
+</body>
+</html>

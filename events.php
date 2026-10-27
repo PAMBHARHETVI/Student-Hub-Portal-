@@ -38,7 +38,7 @@ $events = $stmt->fetchAll();
       </div>
 
       <ul class="nav-list">
-        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="dashboard.php">Dashboard</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="attendance.html">Attendance</a></li>
@@ -49,7 +49,7 @@ $events = $stmt->fetchAll();
         <li><a href="fees.html" >Fees</a></li>
         <li><a href="events.php">Events</a></li>
         <li><a href="settings.html">Settings</a></li>
-        <li><a href="home_page.html">Log Out</a></li>
+        <li><a href="logout.php">Log Out</a></li>
       </ul>
 
       <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>

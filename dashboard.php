@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/auth.php';
+requireLogin();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +38,7 @@
         <li><a href="fees.html">Fees</a></li>
         <li><a href="events.php">Events</a></li>
         <li><a href="settings.html">Settings</a></li>
-        <li><a href="home_page.html">Log Out</a></li>
+        <li><a href="logout.php">Log Out</a></li>
       </ul>
 
       <p class="sidebar-foot">Semester 3 · Odd Term 2026-27</p>
@@ -66,7 +70,9 @@
       <main class="content">
 
         <section class="page-heading" aria-labelledby="welcome-title">
-          <h1 id="welcome-title">Welcome, HETVI</h1>
+          <h1 id="welcome-title">
+            Welcome, <?= htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8') ?>
+          </h1>
           <p class="text-secondary">Semester 3 · Division I · Computer Engineering</p>
         </section>
 

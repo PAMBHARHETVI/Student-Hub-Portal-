@@ -42,33 +42,38 @@
 
             <h2>Welcome Back</h2>
 
-            <form action="dashboard.html">
+            <form action="login.php" method="POST">
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" placeholder="Enter Username">
+                    <label for="Username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter Username" autocomplete="username" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter Password">
+                    <label for="paasword">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" autocomplete="current-password" required>                </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Select Role</label>
-                    <select>
-                        <option>Student</option>
-                        <option>Faculty</option>
-                        <option>Admin</option>
-                    </select>
+                <br>
+                <div>
+                    <br>
+                    
+                    <button type="submit" class="btn">LOGIN</button>
+                    <button type="reset" class="btn">CLEAR</button>
                 </div>
-
-                <button class="btn">LOGIN</button>
-                <button type="reset" class="btn">CLEAR</button>
             </form>
+            <p id="loginMessage" role="status" aria-live="polite"></p>
 
         </div>
 
     </section>
+    <script>
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("expired") === "1") {
+        document.getElementById("loginMessage").textContent =
+            "Your session expired. Please log in again.";
+    }
+    </script>
     <script src="JS/script.js"></script>
 </body>
 </html>

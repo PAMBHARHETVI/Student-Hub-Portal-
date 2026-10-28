@@ -14,13 +14,17 @@ if (!$eventId || $eventId < 1) {
 }
 
 // Load the selected upcoming event.
-$stmt = $pdo->prepare(
+$stmt = $conn->prepare(
     "SELECT event_id, title, event_date, event_time, venue
      FROM events
-     WHERE event_id = :id AND event_date >= CURDATE()"
+     WHERE event_id = ? AND event_date >= CURDATE()"
 );
-$stmt->execute([":id" => $eventId]);
-$event = $stmt->fetch();
+$stmt->bind_param("i", $eventId);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$event = $result->fetch_assoc();
+$stmt->close();
 
 if (!$event) {
     http_response_code(404);
@@ -35,53 +39,61 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         try {
             // Find the student's existing account.
-            $stmt = $pdo->prepare(
-                "SELECT student_id FROM students WHERE email = :email"
+            $stmt = $conn->prepare(
+                "SELECT student_id FROM students WHERE email = ?"
             );
-            $stmt->execute([":email" => $email]);
-            $student = $stmt->fetch();
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+
+            $student = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
 
             if (!$student) {
                 $errors[] =
                     "No student account found for this email. Please sign up first.";
             } else {
+                $studentId = (int) $student["student_id"];
+
                 // Prevent duplicate registration.
-                $stmt = $pdo->prepare(
+                $stmt = $conn->prepare(
                     "SELECT registration_id
                      FROM registrations
-                     WHERE student_id = :student_id
-                       AND event_id = :event_id"
+                     WHERE student_id = ? AND event_id = ?"
                 );
-                $stmt->execute([
-                    ":student_id" => $student["student_id"],
-                    ":event_id" => $eventId
-                ]);
+                $stmt->bind_param("ii", $studentId, $eventId);
+                $stmt->execute();
 
-                if ($stmt->fetch()) {
-                    $errors[] = "You are already registered for this event.";
+                $alreadyRegistered =
+                    $stmt->get_result()->num_rows > 0;
+                $stmt->close();
+
+                if ($alreadyRegistered) {
+                    $errors[] =
+                        "You are already registered for this event.";
                 } else {
-                    $stmt = $pdo->prepare(
+                    // Register the student for the event.
+                    $stmt = $conn->prepare(
                         "INSERT INTO registrations
                             (student_id, event_id, registered_at, status)
-                         VALUES
-                            (:student_id, :event_id, NOW(), 'Registered')"
+                         VALUES (?, ?, NOW(), 'Registered')"
                     );
+                    $stmt->bind_param("ii", $studentId, $eventId);
+                    $stmt->execute();
+                    $stmt->close();
 
-                    $stmt->execute([
-                        ":student_id" => $student["student_id"],
-                        ":event_id" => $eventId
-                    ]);
-
-                    $success = "You have successfully registered for this event.";
+                    $success =
+                        "You have successfully registered for this event.";
                 }
             }
-        } catch (PDOException $e) {
+        } catch (mysqli_sql_exception $e) {
             error_log($e->getMessage());
-            $errors[] = "Unable to complete registration. Please try again.";
+            $errors[] =
+                "Unable to complete registration. Please try again.";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
